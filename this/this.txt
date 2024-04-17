@@ -1,0 +1,145 @@
+When a function is invoked a activation record is maintained, this contains the record where the function was called from and
+how the function is invoked, we can figure out this reference by text-emphasis-color: 
+
+the reference of this can be determined the call-site where the function is called
+
+call-site is the location where the function is called not declared
+
+4 rules of Binding this:
+
+1: Default Binding :-
+
+    it is standalone function when there is no other binding rules applied, it takes the reference of the global
+
+    NOTE: in strict mode it will be undefined. strict is dependent on the declaration of the function not on call-site
+
+    function foo() {
+        console.log(this.a);
+    }
+
+    var a = 2;
+
+    (function(){
+
+        "use strict";
+
+        foo();  // output: 2
+    })
+
+2: Implicit Binding :-
+
+    this rule consideres whether the call-site has a context object(owning object / containing object)
+
+    only the top level object property refrence matters
+
+    function foo() {
+        console.log(this.a);
+    }
+
+    var obj2 = {
+        a: 2
+        foo: foo
+    }
+
+    var obj1 = {
+        a: 3
+        obj2: obj2
+    }
+
+    obj1.obj2.foo(); // output: 2
+
+    fallbacks for implicit binding is when the function looses its binding
+
+3: Explicit Binding :-
+    explicit binding happens when you intentionally bind a reference to a this of function , this call be done using call and apply
+
+    function foo() {
+        console.log(this.a)
+    }
+
+    const obj = (
+        a: 4
+    )
+
+    var a = 5;
+
+    foo.call(obj) // output: 4
+
+    foo.apply(obj) // output: 4
+
+    Hard Binding:
+
+        hard binding is when you have a function that returns a function which will apply the obj you pass as a reference while binding
+        so it cant be overridden
+
+        function foo() {
+            console.log(this.a)
+            return this.a
+        }
+
+        function bind(fn, obj) {
+            return function() {
+                return fn.apply(obj, arguments);
+            }
+        }
+        var obj = {
+            a: 2
+        }
+        var bar = bind(foo, obj);
+
+        var b = bar(3);
+        console.log(b) // 3
+
+        after ES5 since hard binding is a very used pattern we have an inbuilt function.prototype called as bind
+
+        can be used by const bar = foo.bind(obj);
+
+        bind(..) returns a new function that is hardcorded to call original function with this reference set to the object we pass
+
+4: New Binding :- 
+
+    Whenever we call a function using the new keyword, it creates a object and this object is set as the binding for that function call
+
+    whenever we use the new keyword the function will return the newly created object unless the function has specified any
+    other alternative return
+
+    function foo (a) {
+        this.a = a 
+    }
+
+    var bar = foo(2);
+    console.log(bar.a) // output: 2
+
+
+
+order of binding: 
+
+    New Binding > Explicit Binding > Implicit Binding > Default Binding 
+
+
+Ignore rules
+
+when we pass null as reference during fn.applt, the this reference will to to default binding
+
+indirection
+
+function foo () {
+    console.log(this.a)
+}
+var a = 2
+var o = {a: 3, foo: foo}
+var p = {a : 4}
+
+o.foo() // output: 3
+(p.foo === o.foo)() // output : 2
+
+
+
+Soft Binding:
+ it is a method where you can have a default binding to object, but can we overridden by explicit or implicit binding bit 
+ should fallback to default binidng
+
+
+
+
+

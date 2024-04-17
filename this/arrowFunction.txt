@@ -1,0 +1,31 @@
+Arrow Functions
+
+unlike normal functions the arrow function do not abide the four rules
+
+arrow functions adopt the this binding from the enclosing scope
+
+
+function foo() {
+    return (a) => {
+        console.log(this.a)
+    }
+}
+
+var obj1 = {
+    a: 2
+}
+
+var obj2 = {
+    a: 3
+}
+
+var bar = foo.call(obj1); foo has the this binding to obj1
+
+bar.call(obj2) // output : 2
+
+even though we are bind the callback function with obj2, since callback takes the this of enclosing object, this points to the this of 
+foo in our case obj1
+
+function foo() {
+    
+}
