@@ -27,5 +27,13 @@ even though we are bind the callback function with obj2, since callback takes th
 foo in our case obj1
 
 function foo() {
-    
+    setTimeout(() => {
+        console.log(this.a)
+    }, 1000)
 }
+
+var obj = {
+    a: 4
+}
+
+foo.call(obj)
