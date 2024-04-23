@@ -30,7 +30,7 @@ call-site is the location where the function is called not declared
 
     this rule consideres whether the call-site has a context object(owning object / containing object)
 
-    only the top level object property refrence matters
+    only the top level object property reference matters
 
     function foo() {
         console.log(this.a);
@@ -110,12 +110,9 @@ call-site is the location where the function is called not declared
     var bar = foo(2);
     console.log(bar.a) // output: 2
 
-
-
 order of binding: 
 
-    New Binding > Explicit Binding > Implicit Binding > Default Binding 
-
+New Binding > Explicit Binding > Implicit Binding > Default Binding 
 
 Ignore rules
 
@@ -132,8 +129,6 @@ var p = {a : 4}
 
 o.foo() // output: 3
 (p.foo === o.foo)() // output : 2
-
-
 
 Soft Binding:
  it is a method where you can have a default binding to object, but can we overridden by explicit or implicit binding bit 

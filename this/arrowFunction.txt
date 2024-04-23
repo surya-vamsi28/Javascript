@@ -2,8 +2,7 @@ Arrow Functions
 
 unlike normal functions the arrow function do not abide the four rules
 
-arrow functions adopt the this binding from the enclosing scope
-
+arrow functions adopt the this binding from the enclosing lexical scope
 
 function foo() {
     return (a) => {
