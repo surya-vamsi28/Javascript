@@ -34,5 +34,5 @@ function sumSuper(a, b, c) {
   let curriedSum = advanceCurry(sum);
   
   alert( curriedSum(1, 2, 3) ); // 6, still callable normally
-  alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg
-  alert( curriedSum(1)(2)(3) )
+  alert( curriedSum(1)?.(2,3) ); // 6, currying of 1st arg
+  alert( curriedSum(1)?.(2)(3) )
