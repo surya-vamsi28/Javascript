@@ -33,9 +33,3 @@ if (!Array.filter) {
     return resArray;
   };
 }
-
-if(!Array.reduce) {
-    Array.reduce = function(callback, initialValue) {
-        
-    }
-}
