@@ -10,3 +10,28 @@ function advanceCurry(fn) {
 
     }
 }
+
+function sum(a) {
+    return function(b) {
+        if(b === undefined) {
+            return a
+        }else {
+            return sum(a+b)
+        }
+        
+    }
+}
+
+function sum() {
+    let sum = 0;
+    let arr = [...arguments]
+    arr.forEach((ele) => {sum += ele})
+    return sum
+}
+
+function sum(...input) {
+    let sum = 0;
+    let arr = [...input]
+    arr.forEach((ele) => {sum += ele})
+    return sum
+}
