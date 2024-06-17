@@ -4,7 +4,7 @@ const binarySearch = (arr, ele) => {
     let j = arr.length - 1;
     let mid = (i + j )/ 2
 
-    while (i < j) {
+    while (i <= j) {
         if (arr[mid] === ele) {
             return true
         }
